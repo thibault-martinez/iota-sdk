@@ -27,8 +27,8 @@ pub struct Migrate;
 #[async_trait]
 impl Migration for Migrate {
     const ID: usize = 0;
-    const SDK_VERSION: &'static str = "0.3.0";
-    const DATE: time::Date = time::macros::date!(2023 - 05 - 09);
+    const SDK_VERSION: &'static str = "0.4.0";
+    const DATE: time::Date = time::macros::date!(2023 - 05 - 15);
 
     #[cfg(feature = "storage")]
     async fn migrate_storage(storage: &crate::wallet::storage::Storage) -> Result<()> {
