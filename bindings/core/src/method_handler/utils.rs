@@ -15,6 +15,7 @@ use iota_sdk::{
         TryFromDto,
     },
 };
+use packable::PackableExt;
 
 use crate::{method::UtilsMethod, response::Response, Result};
 
@@ -105,8 +106,12 @@ pub(crate) fn call_utils_method_internal(method: UtilsMethod) -> Result<Response
             let message: Vec<u8> = prefix_hex::decode(message)?;
             Response::Bool(public_key.verify_keccak256(&signature, &message))
         }
-        UtilsMethod::OutputIdToUtxoInput { output_id } => Response::Input(UtxoInput::from(output_id)),
         UtilsMethod::ComputeSlotCommitmentId { slot_commitment } => Response::SlotCommitmentId(slot_commitment.id()),
+        UtilsMethod::OutputIdToUtxoInput { output_id } => Response::Input(UtxoInput::from(output_id)),
+        UtilsMethod::OutputHexBytes { output } => {
+            let output = Output::try_from_dto(output)?;
+            Response::HexBytes(prefix_hex::encode(output.pack_to_vec()))
+        }
     };
     Ok(response)
 }
