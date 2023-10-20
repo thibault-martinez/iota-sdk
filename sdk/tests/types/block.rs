@@ -15,7 +15,8 @@ use iota_sdk::types::{
     },
     TryFromDto,
 };
-use packable::PackableExt;
+use packable::{error::UnpackError, PackableExt};
+use pretty_assertions::assert_eq;
 
 // TODO reenable tests
 // #[test]

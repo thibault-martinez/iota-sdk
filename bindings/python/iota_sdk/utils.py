@@ -174,7 +174,15 @@ class Utils():
         })
 
     @staticmethod
-    def hash_transaction_essence(essence: TransactionEssence) -> HexStr:
+    def transaction_id(transaction_payload: TransactionPayload) -> HexStr:
+        """ Compute the transaction ID (Blake2b256 hash of the provided transaction payload) of a transaction payload.
+        """
+        return _call_method('transactionId', {
+            'payload': transaction_payload.as_dict()
+        })
+
+    @staticmethod
+     def hash_transaction_essence(essence: TransactionEssence) -> HexStr:
         """ Compute the hash of a transaction essence.
         """
         return _call_method('hashTransactionEssence', {

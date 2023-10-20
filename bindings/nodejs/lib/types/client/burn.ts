@@ -1,16 +1,17 @@
 // Copyright 2023 IOTA Stiftung
 // SPDX-License-Identifier: Apache-2.0
 
+import { AccountId, FoundryId, NftId, TokenId } from '../block/id';
 import { u256 } from '../utils';
 
 /** A DTO for [`Burn`] */
 export interface Burn {
     /** Accounts to burn */
-    accounts?: string[];
+    accounts?: AccountId[];
     /** NFTs to burn */
-    nfts?: string[];
+    nfts?: NftId[];
     /** Foundries to burn */
-    foundries?: string[];
+    foundries?: FoundryId[];
     /** Amounts of native tokens to burn */
-    nativeTokens?: Map<string, u256>;
+    nativeTokens?: Map<TokenId, u256>;
 }
